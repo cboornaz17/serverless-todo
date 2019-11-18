@@ -85,6 +85,32 @@ class api {
         });
     }
 
+    /**
+     *  Updates a todo's info in the database with data
+     *  returns success or failure
+     */
+    updateTodo = (id, data) => {
+        return fetch(this.apiUrl + "/" + id, {
+            method: "PUT",
+            mode: "cors",
+            headers: {
+                "content-type": "application/json",
+            },        
+            body: JSON.stringify(data)
+        }).then((response) => {
+            return response.json().then(data => {
+                return {
+                    success: true,
+                }
+            })
+
+        }).catch((error) => {
+            return {
+                success: false,
+            };
+        });
+    }
+
 } 
 
 const API = new api();
