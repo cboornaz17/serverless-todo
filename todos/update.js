@@ -13,7 +13,10 @@ module.exports.update = (event, context, callback) => {
     console.error('Validation Failed');
     callback(null, {
       statusCode: 400,
-      headers: { 'Content-Type': 'text/plain' },
+      headers: { 
+        'Content-Type': 'text/plain',
+        'Access-Control-Allow-Origin': "*",
+      },
       body: 'Couldn\'t update the todo item.',
     });
     return;
@@ -43,7 +46,10 @@ module.exports.update = (event, context, callback) => {
       console.error(error);
       callback(null, {
         statusCode: error.statusCode || 501,
-        headers: { 'Content-Type': 'text/plain' },
+        headers: { 
+          'Content-Type': 'text/plain',
+          'Access-Control-Allow-Origin': "*",
+        },
         body: 'Couldn\'t fetch the todo item.',
       });
       return;
@@ -52,6 +58,9 @@ module.exports.update = (event, context, callback) => {
     // create a response
     const response = {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': "*",
+      },
       body: JSON.stringify(result.Attributes),
     };
     callback(null, response);

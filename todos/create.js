@@ -36,7 +36,10 @@ module.exports.create = (event, context, callback) => {
       console.error(error);
       callback(null, {
         statusCode: error.statusCode || 501,
-        headers: { 'Content-Type': 'text/plain' },
+        headers: { 
+          'Content-Type': 'text/plain',
+          'Access-Control-Allow-Origin': "*",
+        },
         body: 'Couldn\'t create the todo item.',
       });
       return;
@@ -45,6 +48,9 @@ module.exports.create = (event, context, callback) => {
     // create a response
     const response = {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': "*",
+      },
       body: JSON.stringify(params.Item),
     };
     callback(null, response);
