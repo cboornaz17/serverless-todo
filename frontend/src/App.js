@@ -8,14 +8,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Serverless todo app!
-        </p>
+        <TodoList />
       </header>
-
-      <TodoList />
-
-
     </div>
   );
 }
